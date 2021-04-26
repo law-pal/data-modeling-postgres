@@ -4,4 +4,4 @@ This project involves a startup called ***Sparkify*** they nedeed to analyze the
 
 
 
-![Schema Data Mode;](/home/lawrence/Desktop/data_engineer/mod_data_postgres/postgres_schema_diagram.png "Sparkify Schema")
+![](postgres_schema_diagram.png?raw=true)
