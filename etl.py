@@ -115,9 +115,8 @@ def process_log_file(cur, filepath):
 
 
 def process_data(cur, conn, filepath, func):
-    """ This function processeses JSON files for a data directory path.
-
-    Valid function values can be 'process_song_file' or
+    """ This function processeses JSON files for a data directory path,
+    the valid function values can be 'process_song_file' or
     'process_log_file'.
 
     Args:
