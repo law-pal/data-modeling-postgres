@@ -6,6 +6,19 @@ from sql_queries import *
 
 
 def process_song_file(cur, filepath):
+    """ This function populates the 'artists' and 'songs'
+    tables with their respective data from the datasets.
+    Parameters
+    ----------
+    cur (psycopg2.cursor): python driver cursor.
+
+    filepath (str) : file path containing the data.
+
+    Raises
+    ------
+    NotImplementedError
+
+    """
     # open song file
     df = pd.read_json(filepath, lines=True)
 
@@ -22,6 +35,21 @@ def process_song_file(cur, filepath):
 
 
 def process_log_file(cur, filepath):
+    """ This function inserts time information into the 'time' table and
+    upserts information into the 'users' table, it also populates the
+    Songplay information into the 'songplays' table.
+
+    Parameters
+    ----------
+    cur (psycopg2.cursor): python driver cursor.
+
+    filepath (str) : file path containing the data.
+
+    Raises
+    ------
+    NotImplementedError
+
+    """
     # open log file
     df = pd.read_json(filepath, lines=True)
 
@@ -87,6 +115,19 @@ def process_log_file(cur, filepath):
 
 
 def process_data(cur, conn, filepath, func):
+    """ This function processeses JSON files for a data directory path.
+
+    Valid function values can be 'process_song_file' or
+    'process_log_file'.
+
+    Args:
+
+    cur (psycopg2.cursor): A database cursor
+    conn (psycopg2.connection): A database connection
+    filepath (str): A filepath of the directory to process
+    func (function): The function to call for each found file
+
+    """
     # get all files matching extension from directory
     all_files = []
     for root, dirs, files in os.walk(filepath):
@@ -106,6 +147,11 @@ def process_data(cur, conn, filepath, func):
 
 
 def main():
+    """ This function is the driver function it creates a database connection,
+    and processes Song and Log information, and then
+    closes the cursor and database connection.
+
+    """
     conn = psycopg2.connect(
         "host=127.0.0.1 dbname=sparkifydb user=student password=student")
     cur = conn.cursor()
